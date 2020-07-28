@@ -9,9 +9,9 @@ public class RaceConditionExample {
     public void increment(long value){
         this.count = this.count + value;
     }
-    public void decrement(long value) {
-        this.count = this.count - value;
-    }
+//    public void decrement(long value) {
+//        this.count = this.count - value;
+//    }
     public static void main(String[] args) {
         for(;;) {
             ExecutorService executor = Executors.newFixedThreadPool(10);
