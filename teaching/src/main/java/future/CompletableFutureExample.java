@@ -131,6 +131,30 @@ public class CompletableFutureExample {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+
+        // TODO exceptionally
+        System.out.println("*********************************");
+        CompletableFuture<String> futureExceptionExample = CompletableFuture.supplyAsync(() -> {
+            System.out.println(Thread.currentThread().getName());
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (true) throw new IllegalArgumentException("inten");
+            return "hello";
+        }).exceptionally(e -> {
+            e.printStackTrace();
+            return "error happened";
+        });
+        try {
+            String str = futureExceptionExample.get();
+            System.out.printf("futureExceptionExample value = [%s]\n", str);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        System.out.println("*********************************");
     }
 
 }

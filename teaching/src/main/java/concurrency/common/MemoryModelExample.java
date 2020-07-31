@@ -20,7 +20,7 @@ public class MemoryModelExample {
 }
 
 class Coordinate {
-    int x, y; //stored in heap memory, thread will share these variables
+    Integer x, y; //stored in heap memory, thread will share these variables
     Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
