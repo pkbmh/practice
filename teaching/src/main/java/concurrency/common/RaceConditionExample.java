@@ -6,8 +6,11 @@ import java.util.concurrent.Executors;
 public class RaceConditionExample {
     protected long count = 0;
 
-    public void increment(long value){
-        this.count = this.count + value;
+    public void increment(long value) {
+        synchronized (this) {
+            this.count = this.count + value;
+            // 100.....
+        }
     }
 //    public void decrement(long value) {
 //        this.count = this.count - value;
@@ -20,6 +23,7 @@ public class RaceConditionExample {
                 executor.submit(() -> {
                     for (int i = 0; i < 5; ++i) {
                         example.increment(100);
+                        // 100 * 5 * 100 = 50,000
 //                        example.decrement(100);
                     }
                 });
